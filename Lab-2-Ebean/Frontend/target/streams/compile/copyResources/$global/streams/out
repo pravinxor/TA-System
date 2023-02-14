@@ -1,0 +1,4 @@
+[debug] Copy resource mappings: 
+[debug] 	(/home/pravin/Homework/CS4353/Lab-2-Ebean/Frontend/conf/logback.xml,/home/pravin/Homework/CS4353/Lab-2-Ebean/Frontend/target/scala-2.12/classes/logback.xml)
+[debug] 	(/home/pravin/Homework/CS4353/Lab-2-Ebean/Frontend/conf/application.conf,/home/pravin/Homework/CS4353/Lab-2-Ebean/Frontend/target/scala-2.12/classes/application.conf)
+[debug] 	(/home/pravin/Homework/CS4353/Lab-2-Ebean/Frontend/conf/routes,/home/pravin/Homework/CS4353/Lab-2-Ebean/Frontend/target/scala-2.12/classes/routes)
