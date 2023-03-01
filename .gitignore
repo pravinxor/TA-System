@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/.idea/
+# Datasource local storage ignored files
+Lab-2-Ebean/Frontend/target
+Lab-2-Ebean/Frontend/.idea
+Lab-2-Ebean/Frontend/logs
+Lab-2-Ebean/Frontend/project
+
+Lab-2-Ebean/ebean-backend/target
+Lab-2-Ebean/ebean-backend/.idea
+Lab-2-Ebean/ebean-backend/logs
+Lab-2-Ebean/ebean-backend/project

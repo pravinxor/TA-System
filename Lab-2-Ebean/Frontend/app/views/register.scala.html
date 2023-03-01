@@ -44,6 +44,192 @@
                                 <label for="password">Password</label>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="firstname" name="firstname" type="text" class="validate">
+                                <label for="firstname">First Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="lastname" name="lastname" type="text" class="validate">
+                                <label for="lastname">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="position" name="position" type="text" class="validate">
+                                <label for="position">Position</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="affiliation" name="affiliation" type="text" class="validate">
+                                <label for="affiliation">Affiliation</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="email" name="email" type="text" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="phone" name="phone" type="text" class="validate">
+                                <label for="phone">Phone #</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="fax" name="fax" type="text" class="validate">
+                                <label for="fax">Fax</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="address" name="address" type="text" class="validate">
+                                <label for="address">Address</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="city" name="city" type="text" class="validate">
+                                <label for="city">City</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="country" name="country" type="text" class="validate">
+                                <label for="country">Country</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="zipcode" name="zipcode" type="text" class="validate">
+                                <label for="zipcode">Zip Code</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                <input id="comments" name="comments" type="text" class="validate">
+                                <label for="comments">Comments</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                @*                                <label for="status">Status:</label>*@
+                                <select name="status" id="status">
+                                    <option selected="true" style='display: none'></option>
+                                    <option value="teacher">Teacher</option>
+                                    <option value="student">Student</option>
+                                    <option value="faculty">Faculty</option>
+                                </select>
+                                <label for="status">Education Role</label>
+                            </div>
+                        </div>
+                        <div class="row" id="condit">
+                            <div class="input-field col s12">
+
+                                @*                                <label for="status">Status:</label>*@
+                                <select name="degreeplan" id="degreeplan">
+                                    <option selected="true" style='display: none'></option>
+                                    <option value="phd">Ph.D</option>
+                                    <option value="de-se">D.E.-SE</option>
+                                    <option value="ms-cs">MS-CS</option>
+                                    <option value="ms-se">MS-SE</option>
+                                    <option value="ms-cyber">MS-Cybersecurity</option>
+                                    <option value="bs-cs">BS-CS</option>
+                                    <option value="ba-cs">BA-CS</option>
+                                </select>
+                                <label for="degreeplan">Degree Plan</label>
+                            </div>
+                        </div>
+                        <div class="row" id="condit1">
+                            <div class="input-field col s6">
+                                <select name="semesterstart" id="semesterstart">
+                                    <option selected="true" style='display: none'></option>
+                                    <option value="Fall">Fall</option>
+                                    <option value="Spring">Spring</option>
+                                </select>
+                                <label for="semesterstart">Starting Semester</label>
+
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="yearstart" name="yearstart" type="text" class="validate">
+                                <label for="yearstart">Starting Year</label>
+                            </div>
+                        </div>
+                        <div class="row" id="condit3">
+                            <div class="input-field col s6">
+                                <select name="semesterend" id="semesterend">
+                                    <option selected="true" style='display: none'></option>
+                                    <option value="Fall">Fall</option>
+                                    <option value="Spring">Spring</option>
+                                </select>
+                                <label for="semesterend">Final Semester</label>
+
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="yearend" name="yearend" type="text" class="validate">
+                                <label for="yearend">Expected Graduation</label>
+                            </div>
+                        </div>
+                        <div class="row" id="condit2">
+                            <div class="input-field col s12">
+
+                                @*                                <label for="status">Status:</label>*@
+                                <select name="prevcourses" id="prevcourses" multiple>
+                                    <option selected="true" style='display: none'></option>
+                                    <option value="course1">course1</option>
+                                    <option value="course2">course2</option>
+                                    <option value="course3">course3</option>
+                                    <option value="course4">course4</option>
+                                    <option value="course5">course5</option>
+                                    <option value="course6">course6</option>
+                                    <option value="course7">course7</option>
+                                </select>
+                                <label for="prevcourses">Previous Courses</label>
+                            </div>
+                        </div>
+                        <script>
+                                document.getElementById("condit").style.display = "none";
+                                document.getElementById("condit1").style.display = "none";
+                                document.getElementById("condit2").style.display = "none";
+                                document.getElementById("condit3").style.display = "none";
+                                document.getElementById("status").onchange = function(){
+                                    if(document.getElementById("status").value=="student"){
+                                        document.getElementById("condit").style.display = "block";
+                                        document.getElementById("condit1").style.display = "block";
+                                        document.getElementById("condit2").style.display = "block";
+                                        document.getElementById("condit3").style.display = "block";
+                                    }
+                                    else
+                                    {
+                                        document.getElementById("condit").style.display = "none";
+                                        document.getElementById("condit1").style.display = "none";
+                                        document.getElementById("condit2").style.display = "none";
+                                        document.getElementById("condit3").style.display = "none";
+                                    }
+                                }
+                                $
+                                $(document).ready(function(){
+                                    $('select').formSelect();
+                                });
+                        </script>
                         @if(authorizeMessage!= null){
                             <div class="alert alert-primary" role="alert">
                             @authorizeMessage
