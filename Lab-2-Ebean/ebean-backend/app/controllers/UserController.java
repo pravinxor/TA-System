@@ -1,16 +1,11 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.User;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 
 /**
@@ -64,15 +59,10 @@ public class UserController extends Controller {
         String address = req.get("address").asText();
         String city = req.get("city").asText();
         String country = req.get("country").asText();
-        String zipcode = req.get("zipcoode").asText();
+        String zipcode = req.get("zipcode").asText();
         String comments = req.get("comments").asText();
         String status = req.get("status").asText();
         JsonNode prevcourses = req.get("prevcourses");
-        ArrayList<String> courses = new ArrayList<>();
-        for (Iterator<JsonNode> it = req.get("prevcourses").elements(); it.hasNext(); ) {
-            ArrayNode node = (ArrayNode) it.next();
-            courses.add(node.asText());
-        }
 
 
         User u = User.findByName(username);
