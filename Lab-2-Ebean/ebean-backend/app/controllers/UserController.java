@@ -1,11 +1,14 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.User;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+
+import java.io.IOException;
 
 
 /**
@@ -44,52 +47,22 @@ public class UserController extends Controller {
      *
      * @return success if valid, fail if already taken
      */
-    public Result registerNew() {
+    public Result registerNew() throws IOException {
         System.out.println("In register");
         JsonNode req = request().body().asJson();
         String username = req.get("username").asText();
-        String password = req.get("password").asText();
-        String firstname = req.get("firstname").asText();
-        String lastname = req.get("lastname").asText();
-        String position = req.get("position").asText();
-        String affiliation = req.get("affiliation").asText();
-        String email = req.get("email").asText();
-        String phone = req.get("phone").asText();
-        String fax = req.get("fax").asText();
-        String address = req.get("address").asText();
-        String city = req.get("city").asText();
-        String country = req.get("country").asText();
-        String zipcode = req.get("zipcode").asText();
-        String comments = req.get("comments").asText();
-        String status = req.get("status").asText();
-        JsonNode prevcourses = req.get("prevcourses");
-
 
         User u = User.findByName(username);
         ObjectNode result = null;
         if (u == null) {
             System.out.println("new user");
             result = Json.newObject();
-            User user = new User();
-            user.username = username;
-            user.password = password;
-            user.firstname = firstname;
-            user.lastname = lastname;
-            user.position = position;
-            user.affiliation = affiliation;
-            user.email = email;
-            user.phone = phone;
-            user.fax = fax;
-            user.address = address;
-            user.city = city;
-            user.country = country;
-            user.zipcode = zipcode;
-            user.comments = comments;
-            user.status = status;
-            user.prevcourses = prevcourses;
+            ObjectMapper mapper = new ObjectMapper();
+            User user = mapper.readValue(req.toString(), User.class);
             user.save();
             result.put("body", username);
         }
+        assert result != null;
         return ok(result);
     }
 

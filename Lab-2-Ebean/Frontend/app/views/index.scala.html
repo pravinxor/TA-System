@@ -1,18 +1,15 @@
-@(message: String)
-    @import java.math.BigInteger;var i = 0
+@(user: User)
+@import java.util.Arrays;var i = 0
 <!DOCTYPE html>
 <html>
     <body>
-
         <header class="topbar">
             <h1 class="focused" style="font-size: 37px;
                 color: #57a957">
-                <strong>Login Message</strong>
+                <strong>Welcome, @user.username</strong>
             </h1>
             <p class="focused" style="font-size: 20px;
-                color: #3F51B5">@message</p>
-
+                color: #3F51B5">@user.email</p>
         </header>
-
     </body>
 </html>

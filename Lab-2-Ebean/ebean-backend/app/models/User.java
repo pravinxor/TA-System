@@ -18,7 +18,7 @@ public class User extends Model {
     public Long id;
 
     @Constraints.Required
-    public String username, password, firstname, lastname, position, affiliation, email, phone, fax, address, city, country, zipcode, comments, status;
+    public String username, password, firstname, lastname, position, affiliation, email, phone, fax, address, city, country, zipcode, comments, status, degreeplan, semesterstart, yearstart, semesterend, yearend;
 
     @Constraints.Required
     public JsonNode prevcourses;

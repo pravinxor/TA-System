@@ -20,6 +20,11 @@ create table user (
   zipcode                       varchar(255),
   comments                      varchar(255),
   status                        varchar(255),
+  degreeplan                    varchar(255),
+  semesterstart                 varchar(255),
+  yearstart                     varchar(255),
+  semesterend                   varchar(255),
+  yearend                       varchar(255),
   prevcourses                   longtext,
   constraint pk_user primary key (id)
 );
