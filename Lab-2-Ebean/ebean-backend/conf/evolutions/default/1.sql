@@ -7,6 +7,20 @@ create table user (
   id                            bigint auto_increment not null,
   username                      varchar(255),
   password                      varchar(255),
+  firstname                     varchar(255),
+  lastname                      varchar(255),
+  position                      varchar(255),
+  affiliation                   varchar(255),
+  email                         varchar(255),
+  phone                         varchar(255),
+  fax                           varchar(255),
+  address                       varchar(255),
+  city                          varchar(255),
+  country                       varchar(255),
+  zipcode                       varchar(255),
+  comments                      varchar(255),
+  status                        varchar(255),
+  prevcourses                   longtext,
   constraint pk_user primary key (id)
 );
 
