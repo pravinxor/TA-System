@@ -7,6 +7,8 @@ import models.User;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.StatusHeader;
+import play.twirl.api.Content;
 
 import java.io.IOException;
 
@@ -36,7 +38,27 @@ public class UserController extends Controller {
         } catch (Exception e) {
             return ok("false");
         }
+    }
 
+    public Result getUser() {
+        JsonNode req = request().body().asJson();
+        String username = req.get("username").asText();
+        String password = req.get("password").asText();
+        try {
+            User user = User.findByName(username); // ( match where username and password both match )
+            if (user != null && username.equals(user.username) && password.equals(user.password)) {
+                ObjectMapper mapper = new ObjectMapper();
+                ObjectNode node = mapper.valueToTree(user);
+                node.remove("id");
+                return ok(node.toString());
+            } else {
+                System.out.println("Bad login");
+                return ok("false");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return internalServerError();
+        }
     }
 
 

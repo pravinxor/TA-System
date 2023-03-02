@@ -16,11 +16,19 @@ public class User {
     public CompletionStage<WSResponse> checkAuthorized() {
 
         WSClient ws = play.test.WSTestClient.newClient(9005);
-        //add username password
         WSRequest request = ws.url("http://localhost:9005/login");
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode user = mapper.valueToTree(this);
-        System.out.println(user);
+        return request.addHeader("Content-Type", "application/json")
+                .post(user)
+                .thenApply((WSResponse r) -> r);
+    }
+
+    public CompletionStage<WSResponse> user() {
+        WSClient ws = play.test.WSTestClient.newClient(9005);
+        WSRequest request = ws.url("http://localhost:9005/user");
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode user = mapper.valueToTree(this);
         return request.addHeader("Content-Type", "application/json")
                 .post(user)
                 .thenApply((WSResponse r) -> r);

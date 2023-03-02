@@ -1,5 +1,6 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
@@ -9,6 +10,7 @@ import play.libs.ws.WSResponse;
 import views.html.*;
 
 import javax.inject.Inject;
+import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
 /**
@@ -46,16 +48,20 @@ public class HomeController extends Controller {
         if (loginForm.hasErrors()) {
             return (CompletionStage<Result>) badRequest(views.html.login.render(""));  // send parameter like register so that user could know
         }
-
-        return loginForm.get().checkAuthorized()
+        return loginForm.get().user()
                 .thenApplyAsync((WSResponse r) -> {
-                    if (r.getStatus() == 200 && r.asJson() != null && r.asJson().asBoolean()) {
+                    if (r.getStatus() == 200 && r.asJson() != null && !r.asJson().isBoolean()) {
                         System.out.println(r.asJson());
                         // add username to session
                         session("username", loginForm.get().username);   // store username in session for your project
                         // redirect to index page, to display all categories
-
-                        return ok(views.html.index.render(loginForm.get()));
+                        ObjectMapper mapper = new ObjectMapper();
+                        try {
+                            return ok(index.render(mapper.readValue(r.asJson().toString(), User.class)));
+                        } catch (IOException e) {
+                            System.out.println(r);
+                            throw new RuntimeException(e);
+                        }
                     } else {
                         System.out.println("response null");
                         String authorizeMessage = "Incorrect Username or Password ";
