@@ -7,8 +7,6 @@ import models.User;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.StatusHeader;
-import play.twirl.api.Content;
 
 import java.io.IOException;
 
@@ -20,26 +18,6 @@ import java.io.IOException;
  */
 
 public class UserController extends Controller {
-
-    public Result authenticate() {
-
-        System.out.println("In authenticate");
-        JsonNode req = request().body().asJson();
-        String username = req.get("username").asText();
-        String password = req.get("password").asText();
-
-        try {
-            User user = User.findByName(username); // ( match where username and password both match )
-            if (user != null && username.equals(user.username) && password.equals(user.password)) {
-                return ok("true");
-            } else {
-                return ok("false");
-            }
-        } catch (Exception e) {
-            return ok("false");
-        }
-    }
-
     public Result getUser() {
         JsonNode req = request().body().asJson();
         String username = req.get("username").asText();
@@ -78,14 +56,16 @@ public class UserController extends Controller {
         ObjectNode result = null;
         if (u == null) {
             System.out.println("new user");
-            result = Json.newObject();
-            ObjectMapper mapper = new ObjectMapper();
-            User user = mapper.readValue(req.toString(), User.class);
-            user.save();
-            result.put("body", username);
         }
+
+        // Make another function in the backend for editing users
+        result = Json.newObject();
+        ObjectMapper mapper = new ObjectMapper();
+        User user = mapper.readValue(req.toString(), User.class);
+        user.save();
+        result.put("body", username);
+
         assert result != null;
         return ok(result);
     }
-
 }

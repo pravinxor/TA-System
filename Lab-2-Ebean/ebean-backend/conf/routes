@@ -5,12 +5,8 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 
-#Login
-POST     /login                      controllers.UserController.authenticate()
-
-
 # Add User  {"name":name, "password":password}
 POST    /signup                      controllers.UserController.registerNew()
 
+# Used for login
 POST    /user                        controllers.UserController.getUser()
-
