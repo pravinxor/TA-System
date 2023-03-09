@@ -61,7 +61,7 @@
                             <div class="input-field col s12">
 
                                 @*                                <label for="status">Status:</label>*@
-                                <select name="degreeplan" id="degreeplan" disabled="disabled">
+                                <select name="degreeplan" id="degreeplan" disabled="disabled" value=@user.degreeplan>
                                     <option selected="true" style='display: none'></option>
                                     <option value="phd">Ph.D</option>
                                     <option value="de-se">D.E.-SE</option>
@@ -74,9 +74,20 @@
                                 <label for="degreeplan">Degree Plan</label>
                             </div>
                         </div>
+                        <script>
+                            var options = document.getElementById("semesterstart").options;
+                            for(var i = 0; i < options.length; i++)
+                            {
+                                if(options[i].text == @user.semesterstart)
+                                {
+                                    options[i].selected = true;
+                                    break;
+                                }
+                            }
+                        </script>
                         <div class="row" id="condit1">
                             <div class="input-field col s6">
-                                <select name="semesterstart" id="semesterstart" disabled="disabled">
+                                <select name="semesterstart" id="semesterstart" disabled="disabled" value=@user.semesterstart>
                                     <option selected="true" style='display: none'></option>
                                     <option value="Fall">Fall</option>
                                     <option value="Spring">Spring</option>
@@ -85,13 +96,13 @@
 
                             </div>
                             <div class="input-field col s6">
-                                <input id="yearstart" name="yearstart" type="text" class="validate" readonly="readonly">
+                                <input id="yearstart" name="yearstart" type="text" class="validate" readonly="readonly" value=@user.yearstart>
                                 <label for="yearstart">Starting Year</label>
                             </div>
                         </div>
                         <div class="row" id="condit3">
                             <div class="input-field col s6">
-                                <select name="semesterend" id="semesterend" disabled="disabled">
+                                <select name="semesterend" id="semesterend" disabled="disabled" value=@user.semesterend>
                                     <option selected="true" style='display: none'></option>
                                     <option value="Fall">Fall</option>
                                     <option value="Spring">Spring</option>
@@ -100,7 +111,7 @@
 
                             </div>
                             <div class="input-field col s6">
-                                <input id="yearend" name="yearend" type="text" class="validate" readonly="readonly">
+                                <input id="yearend" name="yearend" type="text" class="validate" readonly="readonly" value=@user.yearend>
                                 <label for="yearend">Expected Graduation</label>
                             </div>
                         </div>
