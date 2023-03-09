@@ -8,6 +8,7 @@ import play.libs.ws.WSResponse;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
+import views.html.form_ta_apply;
 import views.html.login;
 
 import javax.inject.Inject;
@@ -95,11 +96,12 @@ public class HomeController extends Controller {
                     if (r.getStatus() == 200 && r.asJson() != null) {
                         System.out.println("success");
                         ObjectMapper mapper = new ObjectMapper();
-                        try {
-                            return ok(views.html.form_ta_apply.render(mapper.readValue(r.asJson().toString(), User.class)));//return ok(login.render(""));
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                        return ok(login.render(""));
+//                        try {
+//                            return ok(form_ta_apply.render(mapper.readValue(r.asJson().toString(), User.class)));//return ok(login.render(""));
+//                        } catch (IOException e) {
+//                            throw new RuntimeException(e);
+//                        }
                     } else {
                         System.out.println("response null");
                         return badRequest(views.html.register.render("Error: " + r));

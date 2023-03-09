@@ -63,7 +63,6 @@ public class UserController extends Controller {
         ObjectMapper mapper = new ObjectMapper();
         User user = mapper.readValue(req.toString(), User.class);
         user.save();
-        result.put("body", username);
 
         assert result != null;
         return ok(result);
