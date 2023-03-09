@@ -1,123 +1,18 @@
 @(user: User)
-    @import java.util.Arrays;var i = 0
+    @import java.math.BigInteger;var i = 0
 <!DOCTYPE html>
     <html>
-        <head>
-            <title>TA Application</title>
-        </head>
         <body>
-            <h1 class="focused" style="font-size: 37px;
-                font-family: Helvetica Neue;
-                text-align: center;
-                color: #C8102E">Submit a TA Application
-            </h1>
-            <h3 class="focused" style="font-size: 14px;
-                font-family: Helvetica;
-                text-align: center;
-                color: #0033A0">Please submit your application to this open TA position using the form below. Note that some fields are mandatory.
-            </h3>
-            <h3 class="focused" style="font-size: 14px;
-                font-family: Helvetica;
-                text-align: center;
-                padding-bottom: 30px;">* indicates required field.</h3>
-            <form action="submit-job-application.php" method="POST" style="display: flex;
-                flex-direction: column;
-                align-items: center;"> <!-- VV: fix the post method for form submission -->
-                <div style="display: flex;
-                    flex-direction: row;">
-                    <label for="firstname">First Name:</label>
-                    <input type="text" name="firstname" id="firstname" value=@user.firstname required readonly>
-                    </div>
 
-                    <div style="display: flex;
-                        flex-direction: row;
-                        padding-top: 20px;">
-                        <label for="lastname">Last Name:</label>
-                        <input type="text" name="lastname" id="lastname" value=@user.lastname required readonly>
-                        </div>
+            <header class="topbar">
+                <h1 class="focused" style="font-size: 37px;
+                    color: #57a957">
+                    <strong>Login Message</strong>
+                </h1>
+@*                <p class="focused" style="font-size: 20px;*@
+@*                    color: #3F51B5">@message</p>*@
 
-                        <div style="display: flex;
-                            flex-direction: row;
-                            padding-top: 20px;">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" id="email" value=@user.email required readonly>
-                            </div>
+            </header>
 
-                            <div style="display: flex;
-                                flex-direction: row;
-                                padding-top: 20px;">
-                                <label for="phone">Phone Number:</label>
-                                <input type="text" name="phone" id="phone" value=@user.phone required readonly>
-                                </div>
-
-                                <div style="display: flex;
-                                    flex-direction: row;
-                                    padding-top: 20px;">
-                                    <label for="degreeplan">Current Degree Plan:</label>
-                                    <input type="text" name="degreeplan" id="degreeplan" value=@user.degreeplan required
-                                    readonly>
-                                    </div>
-
-                                    <div style="display: flex;
-                                        flex-direction: row;
-                                        padding-top: 20px;">
-                                        <label for="semesterstart">Starting Semester:</label>
-                                        <input type="text" name="semesterstart" id="semesterstart" value=@user.semesterstart required
-                                        readonly>
-                                        </div>
-
-                                        <div style="display: flex;
-                                            flex-direction: row;
-                                            padding-top: 20px;">
-                                            <label for="yearstart">Starting Year:</label>
-                                            <input type="text" name="yearstart" id="yearstart" value=@user.yearstart required
-                                            readonly>
-                                            </div>
-
-                                            <div style="display: flex;
-                                                flex-direction: row;
-                                                padding-top: 20px;">
-                                                <label for="semesterend">Expected Semester to Graduate:</label>
-                                                <input type="text" name="semesterend" id="semesterend" value=@user.semesterend required
-                                                readonly>
-                                                </div>
-
-                                                <div style="display: flex;
-                                                    flex-direction: row;
-                                                    padding-top: 20px;">
-                                                    <label for="yearend">Expected Year to Graduate:</label>
-                                                    <input type="text" name="yearend" id="yearend" value=@user.yearend required
-                                                    readonly>
-                                                    </div>
-
-                                                    <div style="display: flex;
-                                                        flex-direction: row;
-                                                        padding-top: 20px;">
-                                                        <label for="prevcourses">*Previous Courses:</label>
-                                                            <!-- VV: add functionality for dropdown menu of previous courses -->
-                                                        <select name="prevcourses" id="prevcourses" multiple>
-                                                            <option selected="true" style='display: none'></option>
-                                                            <option value=@user.prevcourses>course1</option>
-                                                            <option value="course2">course2</option>
-                                                            <option value="course3">course3</option>
-                                                            <option value="course4">course4</option>
-                                                            <option value="course5">course5</option>
-                                                            <option value="course6">course6</option>
-                                                            <option value="course7">course7</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <!-- VV: need to implement 1st, 2nd, 3rd option dropdowns
-                                                    and courses that are not preferred -->
-
-                                                    <div style="display: flex;
-                                                        flex-direction: row;
-                                                        padding-top: 20px;">
-                                                        <label for="resume">Resume:</label>
-                                                        <input type="file" name="resume" id="resume" accept=".pdf" required>
-                                                    </div>
-
-                                                    <input type="submit" value="Submit Application" style="margin-top: 20px;">
-            </form>
         </body>
     </html>

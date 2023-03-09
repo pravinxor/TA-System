@@ -36,11 +36,21 @@ public class HomeController extends Controller {
         return ok(views.html.login.render(""));
     }
 
+    public Result form() {
+        return ok(views.html.form_ta_apply.render(null));
+    }
+
     /**
      * Index page
      */
     public Result signup() {
         return ok(views.html.register.render(null));
+    }
+
+    public CompletionStage<Result> formHandler(){
+//        Form<User> formInfo = formFactory.form(Form.class).bindFromRequest();
+//        ObjectMapper mapper = new ObjectMapper();
+        return (CompletionStage<Result>) ok(views.html.form_ta_apply.render(null));//ok(views.html.form_ta_apply.render(mapper.readValue(r.asJson().toString(), User.class)));
     }
 
     public CompletionStage<Result> loginHandler() {
@@ -84,7 +94,12 @@ public class HomeController extends Controller {
                     //System.out.println(r.getBody());
                     if (r.getStatus() == 200 && r.asJson() != null) {
                         System.out.println("success");
-                        return ok(login.render(""));
+                        ObjectMapper mapper = new ObjectMapper();
+                        try {
+                            return ok(views.html.form_ta_apply.render(mapper.readValue(r.asJson().toString(), User.class)));//return ok(login.render(""));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     } else {
                         System.out.println("response null");
                         return badRequest(views.html.register.render("Error: " + r));
