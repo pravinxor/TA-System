@@ -63,10 +63,22 @@
                                 <label for="degreeplan">Starting Year</label>
                             </div>
                         </div>
+                        <script>
+                            var options = document.getElementById("semesterstart").options;
+                            for(var i = 0; i < options.length; i++)
+                            {
+                                if(options[i].text == @user.semesterstart)
+                                {
+                                    options[i].selected = true;
+                                    break;
+                                }
+                            }
+                        </script>
                         <div class="row" id="condit1">
                             <div class="input-field col s6">
                                 <input id="semesterstart" name="semesterstart" type="text" readonly="readonly" value=@user.semesterstart>
                                 <label for="semesterstart">Starting Semester</label>
+
                             </div>
                             <div class="input-field col s6">
                                 <input id="yearstart" name="yearstart" type="text" readonly="readonly" value=@user.yearstart>
@@ -77,6 +89,7 @@
                             <div class="input-field col s6">
                                 <input id="semesterend" name="semesterend" type="text" readonly="readonly" value=@user.semesterend>
                                 <label for="semesterend">Final Semester</label>
+
                             </div>
                             <div class="input-field col s6">
                                 <input id="yearend" name="yearend" type="text" readonly="readonly" value=@user.yearend>
