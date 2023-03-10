@@ -57,7 +57,7 @@
                                 <label for="phone">Phone #</label>
                             </div>
                         </div>
-                        <div class="row" id="condit">
+                        <div class="row">
                             <div class="input-field col s12">
                                 <input id="degreeplan" name="degreeplan" type="text"  readonly="readonly" value=@user.degreeplan>
                                 <label for="degreeplan">Starting Year</label>
@@ -74,7 +74,7 @@
                                 }
                             }
                         </script>
-                        <div class="row" id="condit1">
+                        <div class="row">
                             <div class="input-field col s6">
                                 <input id="semesterstart" name="semesterstart" type="text" readonly="readonly" value=@user.semesterstart>
                                 <label for="semesterstart">Starting Semester</label>
@@ -85,7 +85,7 @@
                                 <label for="yearstart">Starting Year</label>
                             </div>
                         </div>
-                        <div class="row" id="condit3">
+                        <div class="row">
                             <div class="input-field col s6">
                                 <input id="semesterend" name="semesterend" type="text" readonly="readonly" value=@user.semesterend>
                                 <label for="semesterend">Final Semester</label>
@@ -96,7 +96,7 @@
                                 <label for="yearend">Final Year</label>
                             </div>
                         </div>
-                        <div class="row" id="condit2">
+                        <div class="row">
                             <div class="input-field col s12">
 
                                 @*                                <label for="status">Status:</label>*@
@@ -113,10 +113,108 @@
                                 <label for="prevcourses">Previous Courses</label>
                             </div>
                         </div>
+                        <div class="row" >
+                            <div class="input-field col s12">
+
+                                @*                                <label for="status">Status:</label>*@
+                                <select name="firsttoppref" id="firsttoppref">
+                                    <option selected="true" style='display: none'></option>
+                                    <option value="course1">course1</option>
+                                    <option value="course2">course2</option>
+                                    <option value="course3">course3</option>
+                                    <option value="course4">course4</option>
+                                    <option value="course5">course5</option>
+                                    <option value="course6">course6</option>
+                                    <option value="course7">course7</option>
+                                </select>
+                                <label for="firsttoppref">1st Preference (listed)</label>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="input-field col s12">
+
+                                @*                                <label for="status">Status:</label>*@
+                                <select name="secondtoppref" id="secondtoppref">
+                                    <option selected="true" style='display: none'></option>
+                                    <option value="course1">course1</option>
+                                    <option value="course2">course2</option>
+                                    <option value="course3">course3</option>
+                                    <option value="course4">course4</option>
+                                    <option value="course5">course5</option>
+                                    <option value="course6">course6</option>
+                                    <option value="course7">course7</option>
+                                </select>
+                                <label for="secondtoppref">1st Preference (overall)</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <a href="javascript:showhide()" class="button">Click to show optional preferences</a>
+                            @*                            <button id="optionals" type="button" class="btn col s4 offset-s4">Optional Preferences</button>*@
+                        </div>
+                        <div class="row" id="condit">
+                            <div class="input-field col s12">
+
+                                @*                                <label for="status">Status:</label>*@
+                                <select name="secondpref" id="secondpref">
+                                    <option selected="true" style='display: none'></option>
+                                    <option value="course1">course1</option>
+                                    <option value="course2">course2</option>
+                                    <option value="course3">course3</option>
+                                    <option value="course4">course4</option>
+                                    <option value="course5">course5</option>
+                                    <option value="course6">course6</option>
+                                    <option value="course7">course7</option>
+                                </select>
+                                <label for="secondpref">2nd Preference (Optional)</label>
+                            </div>
+                        </div>
+                        <div class="row" id="condit1">
+                            <div class="input-field col s12">
+
+                                @*                                <label for="status">Status:</label>*@
+                                <select name="thirdpref" id="thirdpref">
+                                    <option selected="true" style='display: none'></option>
+                                    <option value="course1">course1</option>
+                                    <option value="course2">course2</option>
+                                    <option value="course3">course3</option>
+                                    <option value="course4">course4</option>
+                                    <option value="course5">course5</option>
+                                    <option value="course6">course6</option>
+                                    <option value="course7">course7</option>
+                                </select>
+                                <label for="thirdpref">3rd Preference (Optional)</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+
+                                @*                                <label for="status">Status:</label>*@
+                                <select name="rejectpref" id="rejectpref" multiple>
+                                    <option selected="true" style='display: none'></option>
+                                    <option value="course1">course1</option>
+                                    <option value="course2">course2</option>
+                                    <option value="course3">course3</option>
+                                    <option value="course4">course4</option>
+                                    <option value="course5">course5</option>
+                                    <option value="course6">course6</option>
+                                    <option value="course7">course7</option>
+                                </select>
+                                <label for="rejectpref">Preferred Position Rejects (Optional)</label>
+                            </div>
+                        </div>
                         <script>
-                            window.onload = function(){
-                                document.getElementsByName()
-                            }
+                                $(document).ready(function(){
+                                    $('select').formSelect();
+                                });
+                                $('optionals').click(function (){
+                                    $('condit').toggle();
+                                });
+                                function showhide() {
+                                    document.getElementById("condit").style.display = (document.getElementById("condit").style.display == 'block') ? 'none' : 'block';
+                                    document.getElementById("condit1").style.display = (document.getElementById("condit1").style.display == 'block') ? 'none' : 'block';
+                                }
+                                document.getElementById("condit").style.display = "none";
+                                document.getElementById("condit1").style.display = "none";
                         </script>
 @*                        @if(authorizeMessage!= null){*@
 @*                            <div class="alert alert-primary" role="alert">*@

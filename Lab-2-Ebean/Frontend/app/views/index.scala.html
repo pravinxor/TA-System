@@ -27,12 +27,19 @@
                 </h1>
 @*                <p class="focused" style="font-size: 20px;*@
 @*                    color: #3F51B5">@message</p>*@
-
+                <div class="row">
+                    <button id="api-search-button" class="btn col s2 offset-s10" type="submit" onclick="window.location.href='@routes.HomeController.formHandler()?username=@user.username&password=@user.password';">Edit Profile</button>
+                </div>
 
             </header>
+
             <div class="row">
                 <button id="api-search-button" class="btn col s4 offset-s4" type="submit" onclick="window.location.href='@routes.HomeController.formHandler()?username=@user.username&password=@user.password';">General TA Form</button>
             </div>
-
+            <div class="row">
+            </div>
+            <div class="row">
+                <button id="api-search-button" class="btn col s4 offset-s4" type="submit" onclick="window.location.href='@routes.HomeController.formHandler()?username=@user.username&password=@user.password';">Data Engineer Needed</button>
+            </div>
         </body>
     </html>
