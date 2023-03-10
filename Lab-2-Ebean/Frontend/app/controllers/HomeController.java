@@ -11,6 +11,7 @@ import views.html.index;
 import views.html.form_ta_apply;
 import views.html.login;
 import views.html.form_ta_apply;
+import views.html.listed_form;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class HomeController extends Controller {
 
     public Result login() { return ok(views.html.login.render(""));}
     public Result form() {
-        return ok(views.html.form_ta_apply.render(null));
+        return ok(views.html.listed_form.render(null));
     }
 
     /**
