@@ -155,11 +155,8 @@ public class HomeController extends Controller {
     }
 
 
-    public CompletionStage<Result> signupHandler() {
-        return signupHandler(null);
-    }
 
-    public CompletionStage<Result> signupHandler(User user) {
+    public CompletionStage<Result> signupHandler() {
         Form<User> registrationForm = formFactory.form(User.class).bindFromRequest();
         if (registrationForm.hasErrors()) {
             return (CompletionStage<Result>) badRequest(views.html.register.render("", null));
@@ -171,11 +168,6 @@ public class HomeController extends Controller {
                         System.out.println("success");
                         ObjectMapper mapper = new ObjectMapper();
                         return ok(login.render(""));
-//                        try {
-//                            return ok(form_ta_apply.render(mapper.readValue(r.asJson().toString(), User.class)));//return ok(login.render(""));
-//                        } catch (IOException e) {
-//                            throw new RuntimeException(e);
-//                        }
                     } else {
                         System.out.println("response null");
                         return badRequest(views.html.register.render("Error: " + r, null));
