@@ -8,7 +8,7 @@ import play.libs.ws.WSResponse;
 
 import java.util.concurrent.CompletionStage;
 
-public class Form {
+public class ListedForm {
     public String title, poster, description;
 
     public CompletionStage<WSResponse> getForm() {

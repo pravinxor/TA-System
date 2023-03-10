@@ -1,4 +1,4 @@
-@(authorizeMessage: String)
+@(authorizeMessage: String, user: User)
 <!DOCTYPE html>
 <html>
     <head>
@@ -231,6 +231,7 @@
                                     $('select').formSelect();
                                 });
                         </script>
+
                         @if(authorizeMessage != null) {
                             <div class="alert alert-primary" role="alert">
                             @authorizeMessage

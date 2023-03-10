@@ -3,6 +3,14 @@
 
 # --- !Ups
 
+create table form (
+  id                            bigint auto_increment not null,
+  title                         varchar(255),
+  poster                        varchar(255),
+  description                   varchar(255),
+  constraint pk_form primary key (id)
+);
+
 create table user (
   id                            bigint auto_increment not null,
   username                      varchar(255),
@@ -31,6 +39,8 @@ create table user (
 
 
 # --- !Downs
+
+drop table if exists form;
 
 drop table if exists user;
 

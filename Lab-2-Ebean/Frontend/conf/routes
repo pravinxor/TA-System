@@ -10,7 +10,7 @@ GET     /login                      controllers.HomeController.loginHandler()
 
 GET     /signup                     controllers.HomeController.signup()
 
-# GET        /edit                controllers.HomeController.editHandler() # Not implemented
+GET        /edit                controllers.HomeController.edit()
 
 GET /form                           controllers.HomeController.form()
 

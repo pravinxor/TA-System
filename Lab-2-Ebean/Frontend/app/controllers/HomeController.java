@@ -10,6 +10,7 @@ import play.mvc.Result;
 import views.html.index;
 import views.html.form_ta_apply;
 import views.html.login;
+import views.html.register;
 import views.html.form_ta_apply;
 import views.html.listed_form;
 
@@ -40,15 +41,62 @@ public class HomeController extends Controller {
     }
 
     public Result login() { return ok(views.html.login.render(""));}
-    public Result form() {
-        return ok(views.html.listed_form.render(null));
+
+    public CompletionStage<Result> form() {
+        Form<ListedForm> loginForm = formFactory.form(ListedForm.class).bindFromRequest();
+        if (loginForm.hasErrors())
+            return (CompletionStage<Result>) badRequest(views.html.login.render(""));  // send parameter like register so that user could know
+
+        return loginForm.get().getForm()
+                .thenApplyAsync((WSResponse r) -> {
+                    System.out.println(r.asJson());
+                    if (r.getStatus() == 200 && r.asJson() != null && !r.asJson().isBoolean()) {
+                        // add username to session
+//                        session("username", loginForm.get().username);
+//                        session("password", loginForm.get().password);// store username in session for your project
+                        // redirect to index page, to display all categories
+                        ObjectMapper mapper = new ObjectMapper();
+                        try {
+                            return ok(listed_form.render(mapper.readValue(r.asJson().toString(), ListedForm.class)));
+                        } catch (IOException e) {
+                            System.out.println(r);
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        System.out.println("response null");
+                        String authorizeMessage = "Incorrect Username or Password ";
+                        return badRequest(views.html.login.render(authorizeMessage));
+                    }
+                }, ec.current());
     }
 
     /**
      * Index page
      */
+    public CompletionStage<Result> edit() {
+        Form<User> registrationForm = formFactory.form(User.class).bindFromRequest();
+        if (registrationForm.hasErrors()) {
+            return (CompletionStage<Result>) badRequest(register.render("", null));
+        }
+        return registrationForm.get().registerUser()
+                .thenApplyAsync((WSResponse r) -> {
+                    //System.out.println(r.getBody());
+                    if (r.getStatus() == 200 && r.asJson() != null) {
+                        System.out.println("success");
+                        ObjectMapper mapper = new ObjectMapper();
+                        try {
+                            return ok(register.render("", mapper.readValue(r.asJson().toString(), User.class)));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        System.out.println("response null");
+                        return badRequest(views.html.register.render("Error: " + r, null));
+                    }
+                }, ec.current());
+    }
     public Result signup() {
-        return ok(views.html.register.render(null));
+        return ok(views.html.register.render(null, null));
     }
 
     public CompletionStage<Result> formHandler(){
@@ -114,7 +162,7 @@ public class HomeController extends Controller {
     public CompletionStage<Result> signupHandler(User user) {
         Form<User> registrationForm = formFactory.form(User.class).bindFromRequest();
         if (registrationForm.hasErrors()) {
-            return (CompletionStage<Result>) badRequest(views.html.register.render(""));
+            return (CompletionStage<Result>) badRequest(views.html.register.render("", null));
         }
         return registrationForm.get().registerUser()
                 .thenApplyAsync((WSResponse r) -> {
@@ -130,7 +178,7 @@ public class HomeController extends Controller {
 //                        }
                     } else {
                         System.out.println("response null");
-                        return badRequest(views.html.register.render("Error: " + r));
+                        return badRequest(views.html.register.render("Error: " + r, null));
                     }
                 }, ec.current());
 

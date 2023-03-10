@@ -10,3 +10,5 @@ POST    /signup                      controllers.UserController.registerNew()
 
 # Used for login
 POST    /user                        controllers.UserController.getUser()
+
+POST    /sampleform                  controllers.FormController.getForm()
