@@ -14,8 +14,9 @@ public class ListedForm {
     public CompletionStage<WSResponse> getForm() {
         WSClient ws = play.test.WSTestClient.newClient(9005);
         WSRequest request = ws.url("http://localhost:9005/sampleform");
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectNode form = mapper.valueToTree(this);
+//        ObjectMapper mapper = new ObjectMapper();
+//        ObjectNode form = mapper.valueToTree(this);
+        String jace = "{\"title\":\""+ title+ "\"}";
         return request.addHeader("Content-Type", "application/json")
                 .post(jace)
                 .thenApply((WSResponse r) -> r);

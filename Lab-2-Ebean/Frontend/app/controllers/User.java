@@ -14,6 +14,9 @@ public class User {
 
     public String[] prevcourses;
 
+    public User() {
+        username = password = firstname = lastname = position = affiliation = email = phone = fax = address = city = country = zipcode = comments = status = degreeplan = semesterstart = yearstart = semesterend = yearend = "";
+    }
     public CompletionStage<WSResponse> user() {
         WSClient ws = play.test.WSTestClient.newClient(9005);
         WSRequest request = ws.url("http://localhost:9005/user");

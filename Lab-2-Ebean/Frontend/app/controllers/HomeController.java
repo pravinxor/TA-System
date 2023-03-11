@@ -1,6 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jdk.nashorn.internal.ir.ObjectNode;
 import play.data.Form;
 import play.data.FormFactory;
 import play.libs.concurrent.HttpExecutionContext;
@@ -89,17 +90,17 @@ public class HomeController extends Controller {
     public CompletionStage<Result> edit() {
         Form<User> registrationForm = formFactory.form(User.class).bindFromRequest();
         if (registrationForm.hasErrors()) {
-            return (CompletionStage<Result>) badRequest(register.render("", null));
+            return (CompletionStage<Result>) badRequest(register.render("", new User()));
         }
         return registrationForm.get().user()
                 .thenApplyAsync((WSResponse r) -> {
                     //System.out.println(r.getBody());
                     if (r.getStatus() == 200 && r.asJson() != null) {
-                        System.out.println("success");
                         ObjectMapper mapper = new ObjectMapper();
                         try {
                             return ok(register.render("", mapper.readValue(r.asJson().toString(), User.class)));
                         } catch (IOException e) {
+
                             throw new RuntimeException(e);
                         }
                     } else {
@@ -119,7 +120,6 @@ public class HomeController extends Controller {
 
         return loginForm.get().user()
                 .thenApplyAsync((WSResponse r) -> {
-                    System.out.println(r.asJson());
                     if (r.getStatus() == 200 && r.asJson() != null && !r.asJson().isBoolean()) {
                         // add username to session
                         session("username", loginForm.get().username);
@@ -173,7 +173,7 @@ public class HomeController extends Controller {
     public CompletionStage<Result> signupHandler() {
         Form<User> registrationForm = formFactory.form(User.class).bindFromRequest();
         if (registrationForm.hasErrors()) {
-            return (CompletionStage<Result>) badRequest(views.html.register.render("", null));
+            return (CompletionStage<Result>) badRequest(views.html.register.render("", new User()));
         }
         return registrationForm.get().registerUser()
                 .thenApplyAsync((WSResponse r) -> {
