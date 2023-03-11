@@ -53,17 +53,22 @@ public class UserController extends Controller {
         String username = req.get("username").asText();
 
         User u = User.findByName(username);
-        ObjectNode result = null;
-        if (u == null) {
-            System.out.println("new user");
-        }
-
-        // Make another function in the backend for editing users
+        ObjectNode result;
         result = Json.newObject();
         ObjectMapper mapper = new ObjectMapper();
         User user = mapper.readValue(req.toString(), User.class);
-        user.save();
-        result.put("body", username);
+
+        if (u == null) {
+            System.out.println("new user");
+            user.save();
+        } else {
+            User udb = User.findByName(username);
+            user.id = udb.id;
+            user.update();
+        }
+
+        // Make another function in the backend for editing users
+
 
         assert result != null;
         return ok(result);

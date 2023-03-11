@@ -1,4 +1,4 @@
-@(authorizeMessage: String)
+@(authorizeMessage: String, user: User)
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,98 +34,98 @@
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="username" name="username" type="text" class="validate">
+                                <input id="username" name="username" type="text" class="validate" value=@user.username>
                                 <label for="username">Username</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="password" name="password" type="password" class="validate">
+                                <input id="password" name="password" type="password" class="validate" value=@user.password>
                                 <label for="password">Password</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="firstname" name="firstname" type="text" class="validate">
+                                <input id="firstname" name="firstname" type="text" class="validate" value=@user.firstname>
                                 <label for="firstname">First Name</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="lastname" name="lastname" type="text" class="validate">
+                                <input id="lastname" name="lastname" type="text" class="validate" value=@user.lastname>
                                 <label for="lastname">Last Name</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="position" name="position" type="text" class="validate">
+                                <input id="position" name="position" type="text" class="validate" value=@user.position>
                                 <label for="position">Position</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="affiliation" name="affiliation" type="text" class="validate">
+                                <input id="affiliation" name="affiliation" type="text" class="validate" value=@user.affiliation>
                                 <label for="affiliation">Affiliation</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="email" name="email" type="text" class="validate">
+                                <input id="email" name="email" type="text" class="validate" value=@user.email>
                                 <label for="email">Email</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="phone" name="phone" type="text" class="validate">
+                                <input id="phone" name="phone" type="text" class="validate" value=@user.phone>
                                 <label for="phone">Phone #</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="fax" name="fax" type="text" class="validate">
+                                <input id="fax" name="fax" type="text" class="validate" value=@user.fax>
                                 <label for="fax">Fax</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="address" name="address" type="text" class="validate">
+                                <input id="address" name="address" type="text" class="validate" value=@user.address>
                                 <label for="address">Address</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="city" name="city" type="text" class="validate">
+                                <input id="city" name="city" type="text" class="validate" value=@user.city>
                                 <label for="city">City</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="country" name="country" type="text" class="validate">
+                                <input id="country" name="country" type="text" class="validate" value=@user.country>
                                 <label for="country">Country</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="zipcode" name="zipcode" type="text" class="validate">
+                                <input id="zipcode" name="zipcode" type="text" class="validate" value=@user.zipcode>
                                 <label for="zipcode">Zip Code</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
 
-                                <input id="comments" name="comments" type="text" class="validate">
+                                <input id="comments" name="comments" type="text" class="validate" value=@user.comments>
                                 <label for="comments">Comments</label>
                             </div>
                         </div>
@@ -231,6 +231,7 @@
                                     $('select').formSelect();
                                 });
                         </script>
+
                         @if(authorizeMessage != null) {
                             <div class="alert alert-primary" role="alert">
                             @authorizeMessage
