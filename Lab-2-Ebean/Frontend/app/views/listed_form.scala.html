@@ -20,7 +20,7 @@
         <header class="topbar">
             <h1 class="focused" style="font-size: 37px;
                 color: #57a957">
-                <strong>Form Submission</strong>
+                <strong>@listing.title</strong>
             </h1>
         </header>
 
@@ -29,7 +29,21 @@
             <div class="card col s4 offset-s4 ">
                 <div class="card-panel">
                     <form action="@routes.HomeController.formHandler()" method="GET"> @*formHandler must be made in HomeController.java*@
-
+                        <blockquote>@listing.poster</blockquote>
+                        <p class="flow-text">@listing.description</p>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="file" name="fileupload" id="upload" class="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <label for="upload">        Upload Resume</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button id="api-search-button" class="btn col s4 offset-s4" type="submit">Submit</button>
+                    </div>
                     </form>
                 </div>
             </div>

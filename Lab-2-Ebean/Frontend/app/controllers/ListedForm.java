@@ -17,7 +17,7 @@ public class ListedForm {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode form = mapper.valueToTree(this);
         return request.addHeader("Content-Type", "application/json")
-                .post(form)
+                .post(jace)
                 .thenApply((WSResponse r) -> r);
     }
 }

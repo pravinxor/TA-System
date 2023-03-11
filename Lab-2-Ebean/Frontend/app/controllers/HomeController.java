@@ -16,6 +16,7 @@ import views.html.listed_form;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.concurrent.CompletionStage;
 
 /**
@@ -43,14 +44,26 @@ public class HomeController extends Controller {
     public Result login() { return ok(views.html.login.render(""));}
 
     public CompletionStage<Result> form() {
-        Form<ListedForm> loginForm = formFactory.form(ListedForm.class).bindFromRequest();
-        if (loginForm.hasErrors())
-            return (CompletionStage<Result>) badRequest(views.html.login.render(""));  // send parameter like register so that user could know
+//        Form<ListedForm> loginForm = formFactory.form(ListedForm.class).bindFromRequest();
+        ListedForm temp = new ListedForm();
+        temp.title = "Sample Posting";
+        temp.description = "";
+        temp.poster = "";
+//       Form<ListedForm> loginForm = formFactory.form(ListedForm.class).bindFromRequest();
 
-        return loginForm.get().getForm()
+     //   if (loginForm.hasErrors())
+      //      return (CompletionStage<Result>) badRequest(views.html.login.render(""));  // send parameter like register so that user could know
+        System.out.println("LOLLLL");
+        ObjectMapper mapper1 = new ObjectMapper();
+        System.out.println(mapper1.valueToTree(temp));
+        ///!!!!!! FIX THIS SOON !!!!!
+        System.out.println("wedidit");
+        return temp.getForm()
                 .thenApplyAsync((WSResponse r) -> {
                     System.out.println(r.asJson());
                     if (r.getStatus() == 200 && r.asJson() != null && !r.asJson().isBoolean()) {
+                        System.out.println("Working");
+                        System.out.println(r.asJson().toString());
                         // add username to session
 //                        session("username", loginForm.get().username);
 //                        session("password", loginForm.get().password);// store username in session for your project
@@ -78,7 +91,7 @@ public class HomeController extends Controller {
         if (registrationForm.hasErrors()) {
             return (CompletionStage<Result>) badRequest(register.render("", null));
         }
-        return registrationForm.get().registerUser()
+        return registrationForm.get().user()
                 .thenApplyAsync((WSResponse r) -> {
                     //System.out.println(r.getBody());
                     if (r.getStatus() == 200 && r.asJson() != null) {
@@ -96,7 +109,7 @@ public class HomeController extends Controller {
                 }, ec.current());
     }
     public Result signup() {
-        return ok(views.html.register.render(null, null));
+        return ok(views.html.register.render(null, new User()));
     }
 
     public CompletionStage<Result> formHandler(){
@@ -112,6 +125,7 @@ public class HomeController extends Controller {
                         session("username", loginForm.get().username);
                         session("password", loginForm.get().password);// store username in session for your project
                         // redirect to index page, to display all categories
+                        System.out.println(r.asJson().toString());
                         ObjectMapper mapper = new ObjectMapper();
                         try {
                             return ok(form_ta_apply.render(mapper.readValue(r.asJson().toString(), User.class)));
